@@ -1,0 +1,49 @@
+<div id="page-info" class="in">
+  <h2><%= legend %></h2>
+</div>
+<div class="line"></div>
+<div class="in">
+  <%= form_for([:admin, @assessment], :html => { :id => "assessment-form" }) do |f| %>
+    <fieldset>
+      <div>
+        <%= f.label :title, "Title:" %><br />
+        <%= f.text_field :title, :class => "small" %>
+      </div>
+      <div>
+        <%= f.label :description, "Description:" %><br />
+        <%= f.text_area :description, :class => "large" %>
+      </div>
+      <div style="float: left; width: 50%;">
+        <%= f.label :display_order, "Display Order:" %><br />
+        <%= f.text_field :display_order, :class => "small" %>
+      </div>
+      <div style="float: left; width: 50%;">
+        <%= f.label :status, "Status:" %><br />
+        <%= f.select :status, [['Published', 1], ['Draft', 0], ['Awaiting Review', 2]], {}, :class => "small" %>
+      </div>
+      <div style="clear: both;"></div>
+      <%= f.fields_for :sections do |builder| %>
+        <%= render "section_fields", :f => builder %>
+      <% end %>
+      <div>
+        <%= link_to_add_fields "Add Section", f, :sections %>
+      </div>
+      <%= f.fields_for :results do |builder| %>
+        <%= render "result_fields", :f => builder %>
+      <% end %>
+      <div style="margin-top: 10px;">
+        <%= link_to_add_fields "Add Result to Assessment", f, :results %>
+      </div>
+      <div>
+        <%= f.label :executive_summary, "Executive Summary" %><br />
+        <%= f.text_area :executive_summary, :class => "large" %>
+      </div>
+      <div>
+        <button id="picture-selector-button" name="picture-selector-button">Select Picture</button>
+      </div>
+      <div>
+        <%= f.submit "Submit", :id => "assessment-submit" %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>
