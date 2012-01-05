@@ -1,0 +1,13 @@
+/log/*.log
+/tmp
+.DS_Store
+._*
+*.sqlite
+.sass-cache/
+public/uploads/
+public/images/icons/
+public/images/notifications/
+app/assets/images/icons/
+app/assets/images/notifications/
+*.backup
+setup_mail.rb
