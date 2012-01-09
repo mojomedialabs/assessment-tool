@@ -4,13 +4,7 @@ class Admin::UsersController < Admin::AdminController
   helper_method :sort_column, :sort_order
 
   def index
-    if @current_user.is_facilitator?
-      @users = User.where("facilitator_id == ?", @current_user.id).search(params[:search]).page(params[:page]).order(sort_column + " " + sort_order)
-
-      @users << @current_user
-    else
       @users = User.search(params[:search]).page(params[:page]).order(sort_column + " " + sort_order)
-    end
   end
 
   def show

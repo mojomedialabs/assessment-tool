@@ -5,11 +5,12 @@ class Admin::AdminController < ApplicationController
 
   skip_before_filter :get_current_user
 
-  before_filter :get_current_user, :is_facilitator?
+  before_filter :get_current_user, :is_admin?
 
   before_filter :is_sysop?, :only => :reboot
 
   def index
+    @post = Post.new
   end
 
   def reboot

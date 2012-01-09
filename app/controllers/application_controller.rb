@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def is_facilitator?
+  def is_moderator?
     if @current_user.nil?
       flash[:type] = "attention"
 
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
       redirect_to root_url and return
     end
 
-    if @current_user.privilege_level < User::PrivilegeLevelFacilitator
+    if @current_user.privilege_level < User::PrivilegeLevelModerator
       flash[:type] = "attention"
 
       flash[:notice] = t "flash.access.not_authorized"
@@ -100,7 +100,6 @@ class ApplicationController < ActionController::Base
   private
 
   def get_layout
-    #If we go the two domain route this is where we will check the request's domain and then switch based on that
     return "application"
   end
 

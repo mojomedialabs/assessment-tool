@@ -4,8 +4,6 @@ require "RFC2822"
 class User < ActiveRecord::Base
   attr_accessor :password
 
-  belongs_to :facilitator, :class_name => "User"
-  has_many :clients, :class_name => "User", :foreign_key => "facilitator_id", :order => "created_at"
   has_many :posts, :dependent => :destroy
   has_many :responses
   has_paper_trail
@@ -64,15 +62,13 @@ class User < ActiveRecord::Base
     :presence => true,
     :numericality => true
 
-  validate :facilitator_must_exist
-
   scope :admins, lambda { where("users.privilege_level >= ?", User::PrivilegeLevelAdmin) }
-  scope :facilitators, lambda { where("users.privilege_level == ?", User::PrivilegeLevelFacilitator) }
+  scope :moderators, lambda { where("users.privilege_level == ?", User::PrivilegeLevelModerator) }
   scope :regular_users, lambda { where("users.privilege_level <= ?", User::PrivilegeLevelUser) }
 
   PrivilegeLevelGuest     = 0
   PrivilegeLevelUser      = 1
-  PrivilegeLevelFacilitator = 2
+  PrivilegeLevelModerator = 2
   PrivilegeLevelAdmin     = 3
   PrivilegeLevelSysOp     = 4
 
@@ -80,10 +76,6 @@ class User < ActiveRecord::Base
     self.privilege_level ||= 1
     self.login_count ||= 0
     self.post_count ||= 0
-  end
-
-  def facilitator_must_exist
-    errors.add(:facilitator_id, I18n.t("activerecord.errors.models.user.facilitator_must_exist")) if facilitator_id && facilitator.nil?
   end
 
   def generate_token(column)
@@ -102,18 +94,14 @@ class User < ActiveRecord::Base
 
   def scrub
     self.email_address.downcase!
-
-    if (self.privilege_level >= User::PrivilegeLevelFacilitator)
-      self.facilitator_id = nil
-    end
   end
 
   def is_user?
     self.privilege_level == User::PrivilegeLevelUser
   end
 
-  def is_facilitator?
-    self.privilege_level == User::PrivilegeLevelFacilitator
+  def is_moderator?
+    self.privilege_level == User::PrivilegeLevelModerator
   end
 
   def is_admin?
@@ -124,8 +112,8 @@ class User < ActiveRecord::Base
     self.privilege_level == User::PrivilegeLevelSysOp
   end
 
-  def is_at_lease_facilitator?
-    self.privilege_level >= User::PrivilegeLevelFacilitator
+  def is_at_lease_moderator?
+    self.privilege_level >= User::PrivilegeLevelModerator
   end
 
   def is_at_least_admin?
