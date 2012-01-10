@@ -11,7 +11,11 @@ class Picture < ActiveRecord::Base
   end
 
   def md5_must_be_unique
-    duplicates = Picture.where("md5 == ?", self.md5)
+    if self.new_record?
+      duplicates = Picture.where("md5 == ?", self.md5)
+    else
+      duplicates = Picture.where("id != ? AND md5 ==?", self.id, self.md5)
+    end
 
     errors.add(:md5, I18n.t("activerecord.errors.models.picture.md5_must_be_unique")) if duplicates.length > 0
   end
