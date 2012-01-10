@@ -5,6 +5,7 @@ class CreatePictures < ActiveRecord::Migration
       t.text :alt_text
       t.text :caption
       t.string :image
+      t.string :md5
       t.timestamps
     end
   end

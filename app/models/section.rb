@@ -31,7 +31,7 @@ class Section < ActiveRecord::Base
       end
     end
 
-    return false
+    false
   end
 
   def complete?(user)
@@ -45,15 +45,15 @@ class Section < ActiveRecord::Base
       end
     end
 
-    return true
+    true
   end
 
   def score(user)
     if !self.complete?(user)
-      return 0
+      0
+    else
+      self.questions.inject(0) { |sum, question| sum + question.response_weight(user) }
     end
-
-    self.questions.inject(0) { |sum, question| sum + question.response_weight(user) }
   end
 
   def min_score
@@ -63,7 +63,7 @@ class Section < ActiveRecord::Base
       min += question.min_score
     end
 
-    return min
+    min
   end
 
   def max_score
@@ -73,7 +73,7 @@ class Section < ActiveRecord::Base
       max += question.max_score
     end
 
-    return max
+    max
   end
 
   def self.search(search)

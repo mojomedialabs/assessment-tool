@@ -23,7 +23,7 @@ class Question < ActiveRecord::Base
       end
     end
 
-    return false
+    false
   end
 
   def response_weight(user)
@@ -35,7 +35,7 @@ class Question < ActiveRecord::Base
       end
     end
 
-    return nil
+    nil
   end
 
   def min_score
@@ -50,9 +50,9 @@ class Question < ActiveRecord::Base
     end
 
     unless min.nil?
-      return min
+      min
     else
-      return 0
+      0
     end
   end
 
@@ -68,9 +68,9 @@ class Question < ActiveRecord::Base
     end
 
     unless max.nil?
-      return max
+      max
     else
-      return 0
+      0
     end
   end
 

@@ -3,6 +3,7 @@
 .DS_Store
 ._*
 *.sqlite
+*.sqlite3
 .sass-cache/
 public/uploads/
 public/images/icons/

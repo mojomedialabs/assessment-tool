@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20111114184036) do
     t.text     "alt_text"
     t.text     "caption"
     t.string   "image"
+    t.string   "md5"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

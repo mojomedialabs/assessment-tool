@@ -109,6 +109,8 @@ en:
         destroy: "Undid delete."
   activerecord:
     attributes:
+      picture:
+        md5: ""
       user:
         email_address: "E-mail Address"
     errors:
@@ -119,6 +121,8 @@ en:
         page:
           parent_must_exist: "must reference an existing page"
           taken: "is already in use by another page"
+        picture:
+          md5_must_be_unique: "You cannot upload the same file twice"
         post:
           user_must_exist: "must reference an existing user"
         result:

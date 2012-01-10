@@ -24,7 +24,7 @@ class Assessment < ActiveRecord::Base
     :presence => true,
     :numericality => true
 
-  scope :published, lambda { where("assessments.published >= ?", 1) }
+  scope :published, lambda { where("assessments.status == ?", 1) }
 
   def initialize_defaults
     self.display_order ||= 0
@@ -54,7 +54,7 @@ class Assessment < ActiveRecord::Base
       end
     end
 
-    return false
+    false
   end
 
   def complete?(user)
@@ -68,15 +68,15 @@ class Assessment < ActiveRecord::Base
       end
     end
 
-    return true
+    true
   end
 
   def score(user)
     if !self.complete?(user)
-      return 0
+      0
+    else
+      self.sections.inject(0) { |sum, section| sum + section.score(user) }
     end
-
-    self.sections.inject(0) { |sum, section| sum + section.score(user) }
   end
 
   def min_score
@@ -86,7 +86,7 @@ class Assessment < ActiveRecord::Base
       min += section.min_score
     end
 
-    return min
+    min
   end
 
   def max_score
@@ -96,15 +96,15 @@ class Assessment < ActiveRecord::Base
       max += section.max_score
     end
 
-    return max
+    max
   end
 
   def time_started
-    return Time.now
+    Time.now
   end
 
   def time_finished
-    return Time.now
+    Time.now
   end
 
   def self.search(search)
