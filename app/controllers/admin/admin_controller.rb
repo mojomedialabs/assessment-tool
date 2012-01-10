@@ -1,5 +1,5 @@
 class Admin::AdminController < ApplicationController
-  layout :get_layout
+  layout "admin"
 
   helper :all
 
@@ -21,9 +21,5 @@ class Admin::AdminController < ApplicationController
     flash[:notice] = t "flash.reboot"
 
     redirect_to admin_root_url and return
-  end
-
-  def get_layout
-    "admin"
   end
 end

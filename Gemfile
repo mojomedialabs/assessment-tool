@@ -51,6 +51,8 @@ gem 'paper_trail'
 
 gem 'rmagick'
 
+gem 'highline'
+
 #gem 'execjs'
 
 #gem 'therubyracer'

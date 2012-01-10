@@ -32,9 +32,6 @@ class User < ActiveRecord::Base
   validates :last_name,
     :presence => true
 
-  validates :company_name,
-    :presence => true
-
   validates :street_address,
     :presence => true
 

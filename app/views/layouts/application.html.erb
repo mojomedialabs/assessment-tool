@@ -25,7 +25,7 @@
         <ul>
           <% if @current_user %>
             <li><%= link_to "Logout", logout_path %></li>
-            <% if @current_user.privilege_level >= User::PrivilegeLevelModerator %>
+            <% if @current_user.privilege_level >= User::PrivilegeLevelAdmin %>
               <li><%= link_to "Admin Panel", admin_root_path %></li>
             <% end %>
             <li><%= link_to "Edit Profile", edit_user_path(@current_user) %></li>
@@ -51,7 +51,7 @@
       <%= yield %>
     </div>
     <footer id="main-footer">
-      Content copyright &copy; <%= Time.now.year %> Business Model Institute. All Rights Reserved.<br />
+      Content copyright &copy; <%= Time.now.year %> COMPANY NAME. All Rights Reserved.<br />
       <span id="mojo">Created with <a href="http://rubyonrails.org/">Ruby on Rails</a> by <a href="http://mojomedialabs.com/">Mojo Media Labs</a>.</span>
     </footer>
   </div>

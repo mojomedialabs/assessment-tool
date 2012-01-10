@@ -1,8 +1,8 @@
 module AssessmentsHelper
-  def get_status(user, assessment)
-    if assessment.complete?(user)
-      return ("Completed! " + link_to("View Results", results_assessment_path(assessment, :client_id => user))).html_safe
-    elsif assessment.started?(user)
+  def get_status(assessment)
+    if assessment.complete?(@current_user)
+      return ("Completed! " + link_to("View Results", results_assessment_path(assessment))).html_safe
+    elsif assessment.started?(@current_user)
       return "Started".html_safe
     else
       return "Not Started".html_safe
@@ -10,7 +10,7 @@ module AssessmentsHelper
   end
 
   def check_answer(answer_id)
-    response = @client.responses.detect { |response| response.answer_id == answer_id }
+    response = @current_user.responses.detect { |response| response.answer_id == answer_id }
 
     return !response.nil?
   end

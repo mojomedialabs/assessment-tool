@@ -18,10 +18,14 @@ en:
         could_not_find_multiple: "Error: Unable to find one or more of the specified assessments!"
         could_not_update_multiple: "The following errors occurred when updating assessment \"%{assessment_title}\":<br />"
         not_completed: "Error: You have not completed this assessment."
+        summary_unavailable: "Error: You have not completed any assessments."
+        could_not_update_response: "Error answering the question. Something awful went wrong! (\uFF61\u25D5\u203F\u203F\u25D5\uFF61)"
+        question_not_found: "Error answering the question. The requested answer option not found."
       success:
         created: "Assessment \"%{assessment_title}\" has been created! %{undo_link}."
         updated: "Assessment \"%{assessment_title}\" has been updated! %{undo_link}."
         destroyed: "Assessment \"%{assessment_title}\" has been deleted! %{undo_link}."
+        response_updated: "You successfully answered the question!"
     session:
       error:
         could_not_create: "Error: Unable to create the session!"
@@ -128,7 +132,7 @@ en:
             name:
               invalid: "must be 4 to 16 letters, numbers, or underscores and have no spaces"
             password:
-              invalid: "must be 6 to 32 characters"
+              invalid: "must be 6 to 255 characters"
             phone_number:
               invalid:  "must be a valid US phone number"
     models:

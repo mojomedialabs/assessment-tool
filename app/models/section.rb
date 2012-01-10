@@ -57,23 +57,13 @@ class Section < ActiveRecord::Base
   end
 
   def min_score
-    return 0
-    #question_mins = self.questions.collect(|question| question.min_score)
+    min = 0
 
-    #this is awful, but is the only sensible fallback I can see right now
-   # unless question_mins.length > 0
-      #return 0
-    #end
+    self.questions.each do |question|
+      min += question.min_score
+    end
 
-    #min = question_mins[0]
-
-    #question_mins.each do |question_min|
-      #if question_min < min
-        #min = question_min
-      #end
-    #end
-
-    #min
+    return min
   end
 
   def max_score

@@ -25,11 +25,9 @@
         <ul>
           <li><%= link_to "Admin Home", admin_root_path, :class => is_current_controller?("admin/admin") %></li>
           <li><%= link_to User.model_name.human.pluralize, admin_users_path, :class => is_current_controller?("admin/users") %></li>
-					<% if @current_user.privilege_level >= User::PrivilegeLevelAdmin %>
-          	<li><%= link_to Page.model_name.human.pluralize, admin_pages_path, :class => is_current_controller?("admin/pages") %></li>
-          	<li><%= link_to Picture.model_name.human.pluralize, admin_pictures_path, :class => is_current_controller?("admin/pictures") %></li>
-          	<li><%= link_to Assessment.model_name.human.pluralize, admin_assessments_path, :class => is_current_controller?("admin/assessments") %></li>
-          <% end %>
+          <li><%= link_to Page.model_name.human.pluralize, admin_pages_path, :class => is_current_controller?("admin/pages") %></li>
+          <li><%= link_to Picture.model_name.human.pluralize, admin_pictures_path, :class => is_current_controller?("admin/pictures") %></li>
+          <li><%= link_to Assessment.model_name.human.pluralize, admin_assessments_path, :class => is_current_controller?("admin/assessments") %></li>
 					<li><%= link_to "Site Home", root_path %></li>
         </ul>
       </nav>
@@ -48,7 +46,7 @@
       <%= yield %>
     </div>
     <footer>
-      <p>&copy; Content Copyright <%= Time.now.year %> Business Model Institute<span class="v-line"> | </span>Created with <a href="http://rubyonrails.org/">Ruby on Rails</a> by <a href="http://mojomedialabs.com/">Mojo Media Labs</a></p>
+      <p>&copy; Content Copyright <%= Time.now.year %> COMPANY NAME<span class="v-line"> | </span>Created with <a href="http://rubyonrails.org/">Ruby on Rails</a> by <a href="http://mojomedialabs.com/">Mojo Media Labs</a></p>
     </footer>
   </div>
 </body>
