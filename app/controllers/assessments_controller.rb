@@ -23,12 +23,12 @@ class AssessmentsController < ApplicationController
 
     if !answer.nil?
       if @current_user.update_response(answer)
-        render :text => t "flash.assessment.error.response_updated", :status => 200
+        render :text => t("flash.assessment.error.response_updated"), :status => 200
       else
-        render :text => t "flash.assessment.error.could_not_update_response", :status => 500
+        render :text => t("flash.assessment.error.could_not_update_response"), :status => 500
       end
     else
-      render :text => t "flash.assessment.error.question_not_found", :status => 404
+      render :text => t("flash.assessment.error.question_not_found"), :status => 404
     end
   end
 

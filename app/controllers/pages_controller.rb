@@ -18,4 +18,8 @@ class PagesController < ApplicationController
       redirect_to root_url and return
     end
   end
+
+  def error418
+    render "418", :layout => false, :status => 418, :text => "I'm a teapot."
+  end
 end

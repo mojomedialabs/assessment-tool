@@ -18,21 +18,15 @@
       <canvas class="cover-page-graph" height="<%= ((assessment.sections.length * 50) + 500 ).to_s %>px" width="900px"></canvas>
     </div>
   </div>
-  <div class="assessment-executive-summary print-page">
-    <h2>Executive Summary</h2>
-      <% unless assessment.executive_summary.blank? %>
-        <%= assessment.executive_summary.html_safe %>
-      <% end %>
-  </div>
   <div class="assessment-overall-result print-page">
     <h2>Overall Results</h2>
     <%= get_result(assessment) %>
   </div>
   <% assessment.sections.each do |section| %>
-    <div class="section-result print-page">
-      <div class="gauge-image">
+    <div id="section-<% section.id %>-result" class="section-result print-page">
+      <!--<div class="gauge-image">
         <%= image_tag("gauge.png") %>
-      </div>
+      </div>-->
       <div class="section-score"><%= section.score(user) %></div>
       <div class="section-max-score"><%= section.max_score %></div>
       <h2><%= section.title %></h2>

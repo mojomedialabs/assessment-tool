@@ -22,7 +22,7 @@ module AssessmentsHelper
 
     assessment.results.each do |result|
       if assessment_score >= result.bottom and assessment_score <= result.top
-        assessment_result += result.content.gsub(/\[Company Name\]/, @current_user.company_name).gsub(/\[Company Nickname\]/, @current_user.company_name)
+        assessment_result += result.content #.gsub(/\[Company Name\]/, @current_user.company_name).gsub(/\[Company Nickname\]/, @current_user.company_name)
 
         break
       end

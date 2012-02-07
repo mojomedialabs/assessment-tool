@@ -7,6 +7,8 @@ AssessmentTool::Application.routes.draw do
 
   post 'versions/:id/revert' => 'versions#revert', :as => 'revert_version'
 
+  get '418' => 'pages#error418', :as => 'error418'
+
   resources :assessments, :only => [:index, :show] do
     collection do
       get :summary

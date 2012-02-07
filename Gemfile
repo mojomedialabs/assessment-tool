@@ -56,3 +56,5 @@ gem 'highline'
 #gem 'execjs'
 
 #gem 'therubyracer'
+
+gem 'yaml_db'
